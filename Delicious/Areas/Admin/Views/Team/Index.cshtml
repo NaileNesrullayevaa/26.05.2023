@@ -1,0 +1,66 @@
+﻿@using Delicious.Models
+@model TeamIndexVM
+@{
+    int count = 1;
+}
+<div class="page-breadcrumb bg-white">
+    <div class="row align-items-center">
+        <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+            <h4 class="page-title">Teams</h4>
+        </div>
+    </div>
+
+</div>
+
+<div class="container-fluid">
+
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="white-box">
+                <a asp-action="Create"><button class="btn btn-success" type="submit">Create</button></a>
+
+                <h3 class="box-title">Basic Table</h3>
+                <p class="text-muted">Add class <code>.table</code></p>
+                <div class="table-responsive">
+                    <table class="table text-nowrap">
+                        <thead>
+                            <tr>
+                                <th class="border-top-0">#</th>
+                                <th class="border-top-0">Image</th>
+                                <th class="border-top-0">Name</th>
+                                <th class="border-top-0">Surname</th>
+                                <th class="border-top-0">Setting</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach(Team team in Model.Teams)
+                            {
+                                <tr>
+                                    <td>@count</td>
+                                    <td>
+                                        <img style="width:100px" src="~/assets/img/chefs/@team.ImageName">
+                                    </td>
+                                    <td>@team.Name</td>
+                                    <td>@team.Surname</td>
+                                    
+                                    <td>
+                                        <a asp-action="Detail" asp-route-id="@team.Id"><button class="btn btn-info" type="submit">Detail</button></a>
+                                        <a asp-action="Edit" asp-route-id="@team.Id"><button class="btn btn-primary" type="submit">Edit</button></a>
+                                        <form method="post" asp-action="Delete" asp-route-id="@team.Id" type="submit">
+                                            <button class="btn-danger">Delete</button>
+
+                                        </form>
+                                    </td>
+                                </tr>
+                                @(count++);
+                                
+                            }
+                         
+                     
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
